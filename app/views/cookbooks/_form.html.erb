@@ -1,0 +1,23 @@
+<%= form_for(@cookbook) do |f| %>
+  <% if @cookbook.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cookbook.errors.count, "error") %> prohibited this cookbook from being saved:</h2>
+
+      <ul>
+      <% @cookbook.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.select :cook_id, Cook.all.collect { |p| [p.name, p.id ] } %>
+  </div>
+  <div class="field">
+     <%= f.select :recipe_id, Recipe.all.collect { |p| [p.name, p.id ] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
